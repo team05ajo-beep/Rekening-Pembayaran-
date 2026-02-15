@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PaymentData } from '../types';
 
@@ -55,7 +56,7 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ data, onChange }) => {
           <input 
             type="text"
             value={data.accountNumber}
-            onChange={(e) => onChange('accountNumber', e.target.value)}
+            onChange={(e) => onChange('accountNumber', e.target.value.replace(/\s/g, ''))}
             className="w-full bg-white/5 border border-white/10 p-5 text-[16px] font-bold text-[#c5a059] focus:border-white outline-none transition-all rounded-none tabular-nums tracking-[0.2em]"
             placeholder="ACCOUNT DIGITS"
           />

