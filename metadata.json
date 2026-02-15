@@ -1,0 +1,7 @@
+{
+  "name": "Rekening Pembayaran ",
+  "description": "Rekening Pembayaran ",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
