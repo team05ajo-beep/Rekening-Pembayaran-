@@ -81,7 +81,7 @@ export const INITIAL_DATA: PaymentData = {
   instruction1Title: 'Langkah Pembayaran',
   instruction1Body: 'Lakukan transfer sesuai nominal yang tertera. Sistem akan melakukan validasi otomatis dalam 1-5 menit.',
   instruction2Title: 'Ketentuan Verifikasi',
-  instruction2Body: 'Gunakan metode transfer BI-FAST untuk proses instan.',
+  instruction2Body: 'Gunakan metode transfer VIP untuk proses instan.',
   footerStatus: 'Authenticated by BI & OJK',
   footerCopyright: '© 2025 Guccio Gucci S.p.A. Authorized Merchant #BI-OJK-99238',
   theme: THEME_PRESETS[0].theme,

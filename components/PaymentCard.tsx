@@ -15,12 +15,7 @@ const EditableText: React.FC<EditableTextProps> = ({ value, onChange, className,
 
   const handleBlur = () => {
     if (contentRef.current) {
-      // Force remove spaces from account number fields if they are edited manually
       let newValue = contentRef.current.innerText;
-      if (className?.includes('font-card') && !className?.includes('uppercase')) {
-         // This is a heuristic to target the account number specifically
-         // since it uses the card font and is numeric
-      }
       onChange(newValue);
     }
   };
@@ -30,7 +25,6 @@ const EditableText: React.FC<EditableTextProps> = ({ value, onChange, className,
       e.preventDefault();
       (e.target as HTMLElement).blur();
     }
-    // Prevent space key for account number specifically if we can identify it
     if (e.key === ' ' && className?.includes('tracking-[0.45em]')) {
       e.preventDefault();
     }
@@ -61,23 +55,18 @@ const EditableText: React.FC<EditableTextProps> = ({ value, onChange, className,
 
 // Elegant QR Code Component linked to Bank Indonesia
 const LuxuryQRCode: React.FC = () => {
-  // Data updated to redirect to Bank Indonesia official website
   const targetUrl = encodeURIComponent("https://www.bi.go.id");
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${targetUrl}&bgcolor=ffffff00&color=2d1b0d`;
   
   return (
     <div className="flex flex-col items-center gap-2 opacity-90 group-hover:opacity-100 transition-all duration-500 hover:scale-105">
       <div className="p-2 bg-white/15 backdrop-blur-xl border border-white/30 rounded-2xl shadow-xl relative overflow-hidden group/qr">
-        {/* Glow behind QR */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover/qr:opacity-100 transition-opacity"></div>
-        
         <img 
           src={qrUrl} 
           alt="Payment QR Code Verified by BI" 
           className="w-20 h-20 mix-blend-multiply brightness-90 contrast-125 relative z-10"
         />
-        
-        {/* Corner Accents */}
         <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#2d1b0d]/30 rounded-tl-lg"></div>
         <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#2d1b0d]/30 rounded-br-lg"></div>
       </div>
@@ -100,7 +89,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({ data, onChange }) => {
   return (
     <div className="flex flex-col items-center justify-center p-4 select-none">
       
-      {/* 1175x632 PX - EXCLUSIVE AMBER GOLD EDITION (SHARP CORNERS) */}
+      {/* 1175x632 PX - EXCLUSIVE AMBER GOLD EDITION */}
       <div 
         className="card-container relative overflow-hidden transition-all duration-1000 group cursor-default"
         style={{ 
@@ -112,7 +101,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({ data, onChange }) => {
           border: '1.2px solid rgba(255, 255, 255, 0.5)'
         }}
       >
-        {/* Layer 0: Background Pattern Inlay */}
+        {/* Background Pattern Inlay */}
         <div 
           className="absolute inset-0 z-0 scale-100 transition-transform duration-[4s] group-hover:scale-105"
           style={{
@@ -124,7 +113,6 @@ const PaymentCard: React.FC<PaymentCardProps> = ({ data, onChange }) => {
           }}
         ></div>
 
-        {/* Layer 1: Texture */}
         <div className="absolute inset-0 z-[1] opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'url(https://www.transparenttextures.com/patterns/brushed-alum.png)' }}></div>
 
         {/* TOP HEADER */}
@@ -137,8 +125,6 @@ const PaymentCard: React.FC<PaymentCardProps> = ({ data, onChange }) => {
             />
             <div className="h-[1px] w-24 bg-[#2d1b0d]/20"></div>
           </div>
-
-          {/* LUXURY QR CODE (Linked to Bank Indonesia) */}
           <LuxuryQRCode />
         </div>
 
@@ -149,40 +135,40 @@ const PaymentCard: React.FC<PaymentCardProps> = ({ data, onChange }) => {
           </h2>
         </div>
 
-        {/* DATA MODULES: COMPACT & BALANCED */}
-        <div className="absolute top-[265px] left-16 right-16 flex justify-between items-end gap-12 z-30 px-8">
+        {/* DATA MODULES: IMPROVED FOR LONG TEXT */}
+        <div className="absolute top-[260px] left-16 right-16 flex justify-between items-start gap-8 z-30 px-8">
           
           {/* Bank Box */}
-          <div className="flex flex-col gap-3 w-[310px]">
+          <div className="flex flex-col gap-3 flex-1 max-w-[450px]">
              <div className="flex items-center gap-2 px-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#2d1b0d]/30"></div>
                 <span className="text-[9px] font-black text-[#2d1b0d]/40 uppercase tracking-[0.5em]">BANK PENERIMA</span>
              </div>
              <div className="relative group/box overflow-hidden">
                 <div className="absolute -inset-[1px] bg-gradient-to-r from-[#2d1b0d]/20 via-white/50 to-transparent rounded-none"></div>
-                <div className="relative px-5 py-6 bg-white/20 border border-white/40 rounded-none backdrop-blur-3xl text-center shadow-lg transition-transform group-hover/box:translate-y-[-2px]">
+                <div className="relative px-6 py-5 bg-white/20 border border-white/40 rounded-none backdrop-blur-3xl text-center shadow-lg transition-transform group-hover/box:translate-y-[-2px] min-h-[90px] flex items-center justify-center">
                    <EditableText 
                      value={data.bankName} 
                      onChange={(val) => onChange('bankName', val)}
-                     className="text-[34px] font-card font-black text-[#2d1b0d] tracking-[0.15em] uppercase leading-none"
+                     className="text-[28px] font-card font-black text-[#2d1b0d] tracking-[0.1em] uppercase leading-tight whitespace-normal overflow-hidden break-words w-full"
                    />
                 </div>
              </div>
           </div>
 
-          {/* Account Name Box */}
-          <div className="flex flex-col gap-3 w-[310px] items-end">
+          {/* Account Name Box - Now Flexible for Long Names */}
+          <div className="flex flex-col gap-3 flex-1 max-w-[450px] items-end">
              <div className="flex items-center gap-2 px-1">
                 <span className="text-[9px] font-black text-[#2d1b0d]/40 uppercase tracking-[0.5em]">Atas Nama</span>
                 <div className="w-1.5 h-1.5 rounded-full border border-[#2d1b0d]/20"></div>
              </div>
              <div className="relative group/box overflow-hidden w-full">
                 <div className="absolute -inset-[1px] bg-gradient-to-l from-[#2d1b0d]/20 via-white/50 to-transparent rounded-none"></div>
-                <div className="relative px-5 py-6 bg-white/20 border border-white/40 rounded-none backdrop-blur-3xl text-center shadow-lg transition-transform group-hover/box:translate-y-[-2px]">
+                <div className="relative px-6 py-5 bg-white/20 border border-white/40 rounded-none backdrop-blur-3xl text-center shadow-lg transition-transform group-hover/box:translate-y-[-2px] min-h-[90px] flex items-center justify-center">
                    <EditableText 
                      value={data.accountName} 
                      onChange={(val) => onChange('accountName', val)}
-                     className="text-[34px] font-card font-black text-[#2d1b0d] tracking-[0.15em] uppercase leading-none"
+                     className={`font-card font-black text-[#2d1b0d] tracking-[0.1em] uppercase leading-tight whitespace-normal overflow-hidden break-words w-full ${data.accountName.length > 20 ? 'text-[22px]' : 'text-[28px]'}`}
                    />
                 </div>
              </div>
@@ -198,7 +184,7 @@ const PaymentCard: React.FC<PaymentCardProps> = ({ data, onChange }) => {
                <div className="flex gap-1">
                  {[1,2,3].map(i => <div key={i} className="w-1 h-1 rounded-full bg-[#2d1b0d]"></div>)}
                </div>
-               <span className="text-[8px] font-black text-[#2d1b0d] uppercase tracking-[0.8em]">NOMOR REKENING (TANPA SPASI)</span>
+               <span className="text-[8px] font-black text-[#2d1b0d] uppercase tracking-[0.8em]">NOMOR REKENING</span>
             </div>
             
             <div className="w-full flex justify-center">
@@ -237,14 +223,13 @@ const PaymentCard: React.FC<PaymentCardProps> = ({ data, onChange }) => {
                   </div>
                   <div className="flex flex-col items-start min-w-[40px]">
                     <span className="text-[6px] text-[#2d1b0d]/40 uppercase tracking-[0.1em]">Verified</span>
-                    <span className="text-[10px] font-black text-[#2d1b0d] tracking-[0.05em]">BI-FAST</span>
+                    <span className="text-[10px] font-black text-[#2d1b0d] tracking-[0.05em]">VIP</span>
                   </div>
                 </div>
              </div>
           </div>
         </div>
 
-        {/* Decorative Inner Frame */}
         <div className="absolute inset-5 border-[1px] border-white/30 pointer-events-none rounded-none"></div>
       </div>
 
